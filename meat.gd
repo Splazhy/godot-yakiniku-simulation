@@ -23,7 +23,6 @@ const COOK_STATE_COLORS = {
 @export var cook_time: float = 3.0:
 	set(value):
 		timer.wait_time = value
-@export var flip_speed := 0.2
 
 @export_category("Meat State")
 @export var front_side := CookState.RAW:
@@ -41,6 +40,7 @@ const COOK_STATE_COLORS = {
 
 @onready var timer: Timer = $Timer
 @onready var area2d: Area2D = $Area2D
+@onready var animation: AnimationPlayer = $AnimationPlayer
 
 var _is_picked_up := false
 var _is_on_grill := false
@@ -121,33 +121,16 @@ func _drop() -> void:
 			queue_free()
 
 
+## Called when player right clicks on the meat to flip it.
 func _flip() -> void:
 	# Resets the cook timer when player flip while the meat is on the grill.
 	if not timer.is_stopped():
 		timer.start()
+	animation.play("flip")
 
-	# This lambda combo is insane, it felt cool to write.
-	# But it has really bad readability though.
-	#
-	# Basically: first tween rotates the meat to 90 degrees, then swaps the
-	# front and back sides, then the second tween rotates the meat from 90 to
-	# 180 degrees to complete the flip.
-	create_tween().tween_method(
-		func(value):
-			material.set_shader_parameter(&"yDegrees", value),
-		0.0,
-		90.0,
-		flip_speed / 2
-	).set_ease(Tween.EASE_OUT).finished.connect(
-		func():
-			var temp = front_side
-			front_side = back_side
-			back_side = temp
-			create_tween().tween_method(
-				func(value):
-					material.set_shader_parameter(&"yDegrees", value),
-				90.0,
-				180.0,
-				flip_speed / 2
-			).set_ease(Tween.EASE_OUT)
-	)
+
+## For animation player
+func flip() -> void:
+	var temp = front_side
+	front_side = back_side
+	back_side = temp

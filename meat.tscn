@@ -18,13 +18,47 @@ shader_parameter/zDegrees = 0.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wnju"]
 size = Vector2(128, 128)
 
+[sub_resource type="Animation" id="Animation_ur8ib"]
+resource_name = "flip"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/yDegrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 180.00000855]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"flip"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fr2vu"]
+_data = {
+&"flip": SubResource("Animation_ur8ib")
+}
+
 [node name="Meat" type="Sprite2D" unique_id=148656149]
 self_modulate = Color(0.46666667, 0.07058824, 0.07058824, 1)
 material = SubResource("ShaderMaterial_73nce")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_2fc84")
 script = ExtResource("2_0wnju")
-flip_speed = null
 
 [node name="Timer" type="Timer" parent="." unique_id=1253297987]
 
@@ -33,3 +67,6 @@ collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=58518436]
 shape = SubResource("RectangleShape2D_0wnju")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=621082527]
+libraries/ = SubResource("AnimationLibrary_fr2vu")
