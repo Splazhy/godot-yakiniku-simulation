@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cctiyxwaydwc7"]
+
+[ext_resource type="Texture2D" uid="uid://25lx4buhdmop" path="res://icon.svg" id="1_2fc84"]
+[ext_resource type="Shader" uid="uid://drx2m4kn1h03g" path="res://rotation.gdshader" id="1_ur8ib"]
+[ext_resource type="Script" uid="uid://d263jk0m52lt7" path="res://meat.gd" id="2_0wnju"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_73nce"]
+resource_local_to_scene = true
+shader = ExtResource("1_ur8ib")
+shader_parameter/isInRadians = false
+shader_parameter/xRadians = 0.0
+shader_parameter/yRadians = 0.0
+shader_parameter/zRadians = 0.0
+shader_parameter/xDegrees = 0.0
+shader_parameter/yDegrees = 0.0
+shader_parameter/zDegrees = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wnju"]
+size = Vector2(128, 128)
+
+[node name="Meat" type="Sprite2D" unique_id=148656149]
+self_modulate = Color(0.46666667, 0.07058824, 0.07058824, 1)
+material = SubResource("ShaderMaterial_73nce")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_2fc84")
+script = ExtResource("2_0wnju")
+flip_speed = null
+
+[node name="Timer" type="Timer" parent="." unique_id=1253297987]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1526509246]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=58518436]
+shape = SubResource("RectangleShape2D_0wnju")

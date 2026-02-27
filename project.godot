@@ -11,8 +11,19 @@ config_version=5
 [application]
 
 config/name="Yakiniku Simulator"
+run/main_scene="uid://c8f0lutriehr5"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
+[layer_names]
+
+2d_physics/layer_1="Meat"
+2d_physics/layer_2="MeatTray"
+2d_physics/layer_3="Grill"
 
 [physics]
 

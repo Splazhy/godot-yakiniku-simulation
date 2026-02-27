@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bwsgarr636op7"]
+
+[ext_resource type="Texture2D" uid="uid://25lx4buhdmop" path="res://icon.svg" id="1_5phpl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5phpl"]
+size = Vector2(128.31763, 128.31761)
+
+[node name="Grill" type="Sprite2D" unique_id=1987267923]
+self_modulate = Color(0.31061712, 0.31061712, 0.3106171, 1)
+scale = Vector2(3.1484375, 3.1484375)
+texture = ExtResource("1_5phpl")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=118708639]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=565701891]
+position = Vector2(-0.31761545, 0)
+shape = SubResource("RectangleShape2D_5phpl")
