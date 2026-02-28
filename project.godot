@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Yakiniku Simulator"
+config/name="Yakiniku Simulation"
 run/main_scene="uid://c8f0lutriehr5"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
