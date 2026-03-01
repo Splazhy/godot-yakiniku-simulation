@@ -6,7 +6,6 @@ enum CookState {
 	RAW,
 	SLIGHTLY_COOKED,
 	COOKED,
-	BURNED,
 	CHARRED
 }
 
